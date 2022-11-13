@@ -1,0 +1,136 @@
+/* TRANSLATION */
+.wrapper {
+    $pubg-font: "PUBG Headline";
+    $public-font: "PUBG Body";
+    font-family: $public-font;
+
+    .pubg-font {
+        font-family: $pubg-font !important;
+    }
+    .public-font {
+        font-family: $public-font !important;
+    }
+    a,
+    button {
+        font-family: $pubg-font !important;
+    }
+
+    [class*="padkey-"] {
+        font-family: $pubg-font;
+    }
+    select,
+    input[type="text"],
+    input[type="password"],
+    textarea {
+        font-family: $public-font;
+        font-weight: 400;
+    }
+
+    .pubg-subheader h2 {
+        font-family: $pubg-font;
+    }
+}
+
+.wrapper:lang(ar),
+.matchmaking:lang(ar),
+.leaderboard-wrapper:lang(ar) {
+    $pubg-font: "PUBG Headline";
+    font-family: $pubg-font;
+
+    .public-font {
+        font-family: $pubg-font !important;
+    }
+    input {
+        font-family: $pubg-font !important;
+    }
+
+    &.pubg-xbox .weapon-mastery-menu .menu-control .btn {
+        //font-family: $pubg-font !important;
+    }
+}
+
+@mixin text-direction($isTextAlign) {
+    direction: rtl;
+    @if ($isTextAlign) {
+        text-align: left;
+    }
+}
+
+.wrapper:lang(ar) {
+    .pubg-gnb .submenu .dep2 {
+        @include text-direction(false);
+    }
+
+    .my-keys-button {
+        @include text-direction(false);
+    }
+
+    .setmatch-box input[type="text"] {
+        @include text-direction(true);
+    }
+
+    .block-selectoptions {
+        .block-col .box .label {
+            @include text-direction(true);
+        }
+    }
+
+    .waitroom-contain {
+        .side-room .state-stit {
+            @include text-direction(true);
+        }
+    }
+
+    .item-content .selected-item-info {
+        @include text-direction(true);
+    }
+
+    .item-slot-wrapper .item-name,
+    .crate-wrap .crate-name {
+        @include text-direction(false);
+
+        &::after {
+            content: "\200E";
+        }
+    }
+
+    .item-basic-info .preview-item-name {
+        @include text-direction(true);
+
+        &::after {
+            content: "\200E";
+        }
+    }
+
+    .rank-point-cnt .season-high .tit {
+        @include text-direction(true);
+    }
+
+    .weapon-mastery {
+        .weapon-mastery-content {
+            .weapon-mastery-xp-bar-wrapper {
+                .pubg-tooltip {
+                    .tooltip {
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    }
+
+    .news-content-wrapper {
+        @include text-direction(true);
+    }
+
+    .noti-content,
+    .noti-header-text,
+    .noti-footer {
+        @include text-direction(true);
+    }
+}
+
+.wrapper.pubg-xbox:lang(ar) {
+    .skinbox .crate-tip {
+        @include text-direction(true);
+    }
+}

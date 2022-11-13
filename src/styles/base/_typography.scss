@@ -1,0 +1,186 @@
+/* Typography */
+%typography-size-h1000 {
+    font-size: calc_vh(72vh);
+    line-height: calc_vh(72vh);
+}
+%typography-size-h900 {
+    font-size: calc_vh(64vh);
+    line-height: calc_vh(64vh);
+}
+%typography-size-h800 {
+    font-size: calc_vh(48vh);
+    line-height: calc_vh(48vh);
+}
+%typography-size-h700 {
+    font-size: calc_vh(36vh);
+    line-height: calc_vh(38vh);
+}
+%typography-size-h600 {
+    font-size: calc_vh(28vh);
+    line-height: calc_vh(32vh);
+}
+%typography-size-h500 {
+    font-size: calc_vh(24vh);
+    line-height: calc_vh(28vh);
+}
+%typography-size-h400 {
+    font-size: calc_vh(21vh);
+    line-height: calc_vh(24vh);
+}
+%typography-size-h300 {
+    font-size: calc_vh(18vh);
+    line-height: calc_vh(22vh);
+}
+%typography-size-h200 {
+    font-size: calc_vh(16vh);
+    line-height: calc_vh(20vh);
+}
+%typography-size-h100 {
+    font-size: calc_vh(14vh);
+    line-height: calc_vh(18vh);
+}
+%typography-size-b500 {
+    font-size: calc_vh(24vh);
+    line-height: calc_vh(28vh);
+}
+%typography-size-b400 {
+    font-size: calc_vh(21vh);
+    line-height: calc_vh(28vh);
+}
+%typography-size-b300 {
+    font-size: calc_vh(18vh);
+    line-height: calc_vh(26vh);
+}
+%typography-size-b200 {
+    font-size: calc_vh(16vh);
+    line-height: calc_vh(24vh);
+}
+%typography-size-b100 {
+    font-size: calc_vh(14vh);
+    line-height: calc_vh(22vh);
+}
+%typography-size-b050 {
+    font-size: calc_vh(12vh);
+    line-height: calc_vh(20vh);
+}
+/* Header - 제목은 콘텐츠 섹션을 구분하는 데 사용됩니다. 제목은 항상 굵게 또는 굵게 글꼴 두께로 설정해야합니다. */
+.type-h1 {
+    @extend %typography-size-h1000;
+    font-weight: bold;
+    &:lang(ar) {
+        line-height: calc_vh(82vh);
+    }
+    &:lang(th) {
+        line-height: calc_vh(90vh);
+    }
+}
+.type-h2 {
+    @extend %typography-size-h900;
+    font-weight: bold;
+    &:lang(ar) {
+        line-height: calc_vh(74vh);
+    }
+    &:lang(th) {
+        line-height: calc_vh(80vh);
+    }
+}
+.type-h3 {
+    @extend %typography-size-h800;
+    font-weight: bold;
+    &:lang(ar) {
+        line-height: calc_vh(56vh);
+    }
+    &:lang(th) {
+        line-height: calc_vh(60vh);
+    }
+}
+.type-h4 {
+    @extend %typography-size-h700;
+    font-weight: bold;
+    &:lang(ar) {
+        line-height: calc_vh(42vh);
+    }
+    &:lang(th) {
+        line-height: calc_vh(44vh);
+    }
+}
+.type-h5 {
+    @extend %typography-size-h600;
+    font-weight: bold;
+}
+.type-h6 {
+    @extend %typography-size-h500;
+    font-weight: bold;
+}
+.type-h7 {
+    @extend %typography-size-h400;
+    font-weight: bold;
+}
+.type-h8 {
+    @extend %typography-size-h300;
+    font-weight: bold;
+}
+.type-h9 {
+    @extend %typography-size-h200;
+    font-weight: bold;
+}
+.type-h10 {
+    @extend %typography-size-h100;
+    font-weight: bold;
+}
+/* Element Caption - 버튼 등의 컴포넌트 요소 내에 사용할 수 있습니다. */
+.type-c1 {
+    @extend %typography-size-h500;
+}
+.type-c2 {
+    @extend %typography-size-h400;
+}
+.type-c3 {
+    @extend %typography-size-h300;
+}
+.type-c4 {
+    @extend %typography-size-h200;
+}
+.type-c5 {
+    @extend %typography-size-h100;
+}
+/* Lead Paraghraph - 본문에서 시각적인 강조가 필요한 경우 사용합니다. 내용의 시작 부분에만 사용해야합니다. */
+.type-l1 {
+    @extend %typography-size-b500;
+    font-weight: bold;
+}
+.type-l2 {
+    @extend %typography-size-b400;
+    font-weight: bold;
+}
+.type-l3 {
+    @extend %typography-size-b300;
+    font-weight: bold;
+}
+.type-l4 {
+    @extend %typography-size-b200;
+    font-weight: bold;
+}
+.type-l5 {
+    @extend %typography-size-b100;
+    font-weight: bold;
+}
+/* Paraghraph - 일반적인 본문을 작성할 때 사용합니다. 본문 내에서 머리기호, 번호를 매길 수 있습니다. 단락은 항상 일반 글꼴 두께로 설정해야합니다. */
+.type-p1 {
+    @extend %typography-size-b500;
+}
+.type-p2 {
+    @extend %typography-size-b400;
+}
+.type-p3 {
+    @extend %typography-size-b300;
+}
+.type-p4 {
+    @extend %typography-size-b200;
+}
+.type-p5 {
+    @extend %typography-size-b100;
+}
+.type-p6 {
+    @extend %typography-size-b050;
+}

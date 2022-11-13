@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+// Initialize Base
+@import './reset.scss';                   // 초기화
+@import './common.scss';                  // 공통요소 (팝업 및 메세지 창 등)
+@import './common-console.scss';          // Common css for Xbox and Playstation
+
+// Common Components
+@import './translation-new.scss';         // 다국어 관련
+@import './components.scss';              // PUBG Design System Components
+@import './pad.scss';                     // XBOX 패드 관련 (아이콘 및 기타 등)
+@import './icon.scss';                    // Icon 관련
+@import './modal.xbox.scss';              // Modal 관련
+@import './broauth.scss';                 // 시작화면, 인트로 및 로그인 페이지
+@import './broauth.xbox.scss';            // 인트로 관련
+//@import './xboxauth.scss';                // 인트로 관련
+@import './broapp.scss';                  // 모듈 관련 keyboard
+@import './broapp.xbox.scss';             // 모듈 관련 gamepad
+// @import './weapon-mastery.scss';          // MASTERY 관련
+// @import './weapon-mastery.console.scss';  // MASTERY 관련

@@ -1,0 +1,127 @@
+/* VARIABLE */
+@use "./customize-contents-block" as *;
+@use "../global/pubg.variable" as *;
+
+$customize_assets_path: "../../images/customize";
+
+* {
+    box-sizing: border-box;
+}
+
+/* CATEGORY-cursor-ACTION */
+@mixin items-cursor-action {
+    &::after {
+        content: "";
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        border-width: calc_vh(3vh);
+        border-style: solid;
+        pointer-events: none;
+    }
+
+    &:hover {
+        .category-name {
+            color: #eee;
+        }
+        img {
+            opacity: 1;
+            transform: scale(1.06);
+        }
+
+        &::after {
+            display: block;
+            border-color: $yellow200-focus;
+        }
+    }
+
+    &.selected {
+        &::after {
+            display: block;
+            border-color: #eee;
+        }
+
+        &:hover {
+            img {
+                transform: scale(1);
+            }
+        }
+    }
+
+    &.disabled {
+        opacity: 0.25;
+        pointer-events: none;
+    }
+}
+
+:host-context(.pubg-pc) {
+    .padkeyarea {
+        display: none;
+    }
+}
+
+.pubg-font {
+    letter-spacing: calc_vh(1vh);
+}
+
+/* BUTTON */
+span[class^="item-"] {
+    display: inline-block;
+    width: calc_vh(16vh);
+    height: calc_vh(16vh);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.tooltip-component-wrapper {
+    .tooltip-component {
+        transform: translate(10%, 45%);
+    }
+
+    &:hover {
+        .tooltip-component {
+            display: block;
+        }
+    }
+}
+
+
+
+.new-slot {
+    width: calc_vh(6vh);
+    height: calc_vh(6vh);
+    border-radius: 50%;
+    background-color: $point_color;
+}
+
+.ico-back {
+    display: inline-block;
+    width: calc_vh(24vh);
+    height: calc_vh(24vh);
+
+    background-size: cover;
+}
+
+/* CHECKBOX */
+.chkBox {
+    position: relative;
+    display: block;
+    width: calc_vh(22vh);
+    height: calc_vh(22vh);
+    outline: calc_vh(1vh) solid rgba(103, 103, 103, 0.7);
+    // https://jira.krafton.com/browse/PUBG-138541
+    // 특정 해상도에서 체크 박스 테두리 잔상이 남는 이슈
+    // 아래 속성을 사용하지 않고 width, height를 2씩 빼서 조정했습니다.
+    // outline-offset: calc_vh(-1vh);
+
+    background-size: cover;
+}
+
+ordo-side-tab {
+    width: calc_vh(224vh);
+}

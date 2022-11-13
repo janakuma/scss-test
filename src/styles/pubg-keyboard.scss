@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+// Initialize Base
+@import 'pubg.variable.scss';
+@import './reset.scss';                   // 초기화
+@import './common.scss';                  // 공통요소 (팝업 및 메세지 창 등)
+
+// Common Components
+@import './translation-new.scss';         // 다국어 관련
+@import './components.scss';              // PUBG Design System Components
+@import './components/button';
+@import './icon.scss';                    // Icon 관련
+@import './modal.scss';                   // Modal 관련
+@import './broauth.scss';                 // 시작화면, 인트로 및 로그인 페이지
+//@import './xboxauth.scss';                // 인트로 관련
+@import './broapp.scss';                  // 모듈 관련
+@import './tip.scss';                     // 팁

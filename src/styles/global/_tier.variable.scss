@@ -1,0 +1,87 @@
+/* Tier Color Token */
+// 정규 티어에 포함되는 아이템, 기존 Common과 Classic 은 통합, Classic 아이템은 주로 BP 로 제공되는 아이템이며, 유료 재화로 판매하지 않음
+$tier-legendary: #DF4B3C;
+$tier-epic: #C54AFF;
+$tier-elite: #8475FF;
+$tier-rare: #2792DE;
+$tier-special: #1F9C98;
+$tier-classic: #9F9F9F; $tier-common: #9F9F9F; //색상값이 동일하지만 다른 상태로, 티어를 통합하지 않고 별도로 추가
+
+// 최초 계정 생성시 지급되는 기본 아이템, 추가로 판매/지급하지 않음, 판매/스팀장터 거래불가
+$tier-basic: #9F9F9F;
+// 특별한 용도의 이벤트 아이템, E-Sports , 메이저한 오프라인 이벤트 시 한정 수량으로 배포하는 특별한 아이템, 판매/스팀장터 거래가능
+$tier-ultimate: #FFB800;
+// 기존 지역 사업부에서 이벤트 용도로 제작한 아이템들에 부여되는 티어, 많은 수의 아이템을 유저에게 배포하는 용도, 판매/스팀장터 거래불가
+$tier-event: #B9A91F;
+
+// 사용 예시 @include tierGradient($tier-legendary);
+@mixin tierGradient($color) {
+    background: linear-gradient(90deg, $color 0%, rgba($color, 0) 100%);
+}
+
+/* 상품명 과 상품명 앞에 bar color 정의 */
+%tier-color {
+    &.basic {
+        color: $tier-basic;
+    }
+    &.common {
+        color: $tier-common;
+    }
+    &.classic {
+        color: $tier-classic;
+    }
+    &.special {
+        color: $tier-special;
+    }
+    &.rare {
+        color: $tier-rare;
+    }
+    &.elite {
+        color: $tier-elite;
+    }
+    &.epic {
+        color: $tier-epic;
+    }
+    &.legendary {
+        color: $tier-legendary;
+    }
+    &.ultimate {
+        color: $tier-ultimate;
+    }
+    &.event {
+        color: $tier-event;
+    }
+}
+
+%tier-background-color {
+    &.basic {
+        background-color: $tier-basic;
+    }
+    &.common {
+        background-color: $tier-common;
+    }
+    &.classic {
+        background-color: $tier-classic;
+    }
+    &.special {
+        background-color: $tier-special;
+    }
+    &.rare {
+        background-color: $tier-rare;
+    }
+    &.elite {
+        background-color: $tier-elite;
+    }
+    &.epic {
+        background-color: $tier-epic;
+    }
+    &.legendary {
+        background-color: $tier-legendary;
+    }
+    &.ultimate {
+        background-color: $tier-ultimate;
+    }
+    &.event {
+        background-color: $tier-event;
+    }
+}

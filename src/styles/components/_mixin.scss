@@ -1,0 +1,222 @@
+@use "sass:math";
+//@use '../global/pubg.variable' as *;
+
+$base_path: "../../images";
+
+/* div border-gradiant */
+@mixin borderGradiant($border-gradient, $border-size) {
+    border: $border-size solid;
+    border-image-source: $border-gradient;
+    border-image-slice: 1;
+}
+
+/* Round border button */
+@mixin roundShadow($shadowColor) {
+    border: calc_vh(2vh) solid $shadowColor;
+}
+
+/* Multiple ellipsis */
+@mixin lineClamp($limitLine) {
+    /* autoprefixer: off */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    display: -webkit-box;
+    word-break: break-word; //break-all
+    -webkit-line-clamp: $limitLine;
+    -webkit-box-orient: vertical;
+}
+
+/* Transition mixin */
+@mixin transition($transitions...) {
+    $values: ();
+    $transition-unit: 0.25s;
+    @each $transition in $transitions {
+        //$values: join($transition, $transition-unit);
+        $values: join($transition + " " + $transition-unit, $values, comma);
+    }
+    transition: $values;
+}
+
+/* SpriteAnimation Mixin */
+@mixin spriteAnimation($name, $width, $height, $duration, $steps_x, $steps_y, $img_path, $is_coui: true) {
+    width: $width;
+    height: $height;
+    animation: #{$name}-animationX #{$duration} steps($steps_x) infinite,
+        #{$name}-animationY #{$duration * $steps_y} steps($steps_y) infinite;
+
+    @if $is_coui {
+        background: url("#{$img_path}");
+    } @else {
+        background: url("#{$base_path}/#{$img_path}");
+    }
+
+    background-size: $steps_x * 100% $steps_y * 100%;
+
+    @keyframes #{$name}-animationX {
+        0% {
+            background-position-x: 0%;
+        }
+        100% {
+            background-position-x: -($steps_x * 100%);
+        }
+    }
+
+    @keyframes #{$name}-animationY {
+        0% {
+            background-position-y: 0%;
+        }
+        100% {
+            background-position-y: -($steps_y * 100%);
+        }
+    }
+}
+/* SpriteAnimation Mixin */
+@mixin singleAnimation($name, $width, $height, $duration, $steps_x, $steps_y, $img_path, $delay, $is_coui: true) {
+    width: $width;
+    height: $height;
+    animation: #{$name}-animationX #{$duration} steps($steps_x) $steps_y,
+        #{$name}-animationY #{$duration * $steps_y} steps($steps_y) 1;
+    animation-delay: $delay;
+    @if $is_coui {
+        background: url("#{$img_path}");
+    } @else {
+        background: url("#{$base_path}/#{$img_path}");
+    }
+    background-size: $steps_x * 100% $steps_y * 100%;
+
+    @keyframes #{$name}-animationX {
+        0% {
+            background-position-x: 0%;
+        }
+        100% {
+            background-position-x: -($steps_x * 100%);
+        }
+    }
+
+    @keyframes #{$name}-animationY {
+        0% {
+            background-position-y: 0%;
+        }
+        100% {
+            background-position-y: -($steps_y * 100%);
+        }
+    }
+}
+
+/*
+    +버튼
+    상자 크기, 십자가 길이, 십자가 두께, 십자가 색상, 오버시 십자가 색상, 배경색, 오버시 배경색
+    색상이 0이면 색이 지정안됨
+    상자 크기 및 십자가 길이가 0일때 100%로 설정됨
+*/
+@mixin md-btn-plus(
+    $square-size,
+    $border-Length,
+    $border-thickness,
+    $border-color,
+    $border-color-hover,
+    $background-color,
+    $background-color-hover
+) {
+    @extend .animate;
+    position: relative;
+    display: inline-block;
+    @if $square-size == 0 {
+        width: 100%;
+        height: 100%;
+    } @else {
+        width: calc_vh($square-size);
+        height: calc_vh($square-size);
+    }
+
+    @if $background-color != 0 {
+        background-color: $background-color;
+    }
+
+    &:before,
+    &:after {
+        @extend .animate;
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -(calc_vh($border-thickness) / 2);
+        margin-left: -(calc_vh($border-Length) / 2);
+        /*transform: translate(-50%,-50%); // 플러스가 상자에 꽉찰때 명확하지 않음*/
+        @if $border-Length == 0 {
+            width: 100%;
+        } @else {
+            width: calc_vh($border-Length);
+        }
+        height: 0;
+        border-top: calc_vh($border-thickness) solid $border-color;
+    }
+    &:before {
+        transform: /*translate(-50%,-50%)*/ rotate(90deg);
+    }
+
+    &:hover {
+        @if $background-color-hover != 0 {
+            background-color: $background-color-hover;
+        }
+        &:before,
+        &:after {
+            border-color: $border-color-hover;
+        }
+    }
+}
+
+/* X버튼 */
+@mixin md-btn-close(
+    $square-size,
+    $border-Length,
+    $border-thickness,
+    $border-color,
+    $border-color-hover,
+    $background-color,
+    $background-color-hover
+) {
+    position: relative;
+    display: inline-block;
+    width: calc_vh($square-size);
+    height: calc_vh($square-size);
+    @if $background-color != 0 {
+        background-color: $background-color;
+    }
+
+    &:before,
+    &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: calc_vh(-1vh);
+        margin-left: -(math.div(calc_vh($border-Length), 2));
+        display: block;
+        width: calc_vh($border-Length);
+        height: 0;
+        border-top: calc_vh($border-thickness) solid $border-color;
+    }
+    &:before {
+        transform: rotate(45deg);
+    }
+    &:after {
+        transform: rotate(-45deg);
+    }
+
+    &:hover {
+        @if $background-color-hover != 0 {
+            background-color: $background-color-hover;
+        }
+        &:before,
+        &:after {
+            border-color: $border-color-hover;
+        }
+    }
+}
+
+.animate {
+    transition: all 0.15s linear;
+}

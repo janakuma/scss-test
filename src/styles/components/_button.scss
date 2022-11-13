@@ -1,0 +1,130 @@
+@use "../global/pubg.variable" as *;
+
+/* BUTTON */
+
+.button {
+    box-sizing: border-box;
+    height: calc_vh(50vh);
+    line-height: calc_vh(50vh - 2vh);
+    padding: 0 calc_vh(30vh);
+    border: 1px solid transparentize(#fff, .4)!important;
+    background-color: transparent!important;
+    color: transparentize(#fff, .4)!important;
+    font-size: calc_vh(30vh);
+    transition: border-color 0.25s, color 0.25s;
+    &:hover {
+        border-color: #fff!important;
+        color: #fff!important;
+    }
+    &--brand {
+        border-color: transparentize($point_color, .4)!important;
+        color: transparentize($point_color, .4)!important;
+        &:hover {
+            border-color: $point_color!important;
+            color: $point_color!important;
+        }
+    }
+    &--disabled {
+        border-color: transparentize(#fff, .75)!important;
+        color: transparentize(#fff, .75)!important;
+        pointer-events: none;
+    }
+    &--small {
+        padding: 0 calc_vh(22vh);
+        min-width: auto;
+        height: calc_vh(42vh);
+        line-height: calc_vh(42vh - 2vh);
+        font-size: calc_vh(22vh);
+    }
+}
+
+.button-group {
+    .btn-co ~ .btn-co {
+        margin-left: calc_vh(15vh);
+    }
+    .button ~ .button {
+        margin-left: calc_vh(5vh);
+    }
+    &--global {
+        display: flex;
+        position: absolute;
+        bottom: calc_vh(40vh);
+        left: calc_vh(60vh);
+    }
+    &--modal {
+        z-index: 2000;
+    }
+}
+
+.battlepass-button {
+    min-width: calc_vh(200vh);
+    padding: calc_vh(10vh) calc_vh(25vh);
+    border-radius: calc_vh(30vh);
+    font-size: calc_vh(26vh);
+    background-color: transparentize($color: #000000, $amount: 0.6);
+    border: calc_vh(2vh) solid #FFFFFF;
+    transition: background-color 0.15s ease-in-out;
+
+    &:hover {
+        background-color: transparentize($color: #FFFFFF, $amount: 0.8);
+    }
+
+    &:active {
+        background-color: transparentize($color: #FFFFFF, $amount: 0.2);
+    }
+
+    &.highlight,
+    &.highlight-first-child:first-child {
+        background-color: transparentize($color: #01CE85, $amount: 0.2);
+        border: calc_vh(2vh) solid #01CE85;
+
+        &:hover {
+            background-color: transparentize($color: #01CE85, $amount: 0.5);
+        }
+
+        &:active {
+            background-color: transparentize($color: #01CE85, $amount: 0.8);
+        }
+
+        &.free {
+            background-color: transparentize($color: #FFFFFF, $amount: 0.8);
+            border: calc_vh(2vh) solid #FFFFFF;
+
+            &:hover {
+                background-color: transparentize($color: #FFFFFF, $amount: 0.5);
+            }
+
+            &:active {
+                background-color: transparentize($color: #FFFFFF, $amount: 0.4);
+            }
+        }
+    }
+
+    &.small {
+        min-width: calc_vh(84vh);
+        padding: calc_vh(5vh) calc_vh(15vh) calc_vh(4vh);
+        font-size: calc_vh(18vh);
+        letter-spacing: calc_vh(1vh);
+        border-width: calc_vh(1vh);
+    }
+
+    &.disabled {
+        color: transparentize($color: #FFFFFF, $amount: 0.7) !important;
+        border-color: transparentize($color: #FFFFFF, $amount: 0.7);
+        pointer-events: none;
+    }
+}
+
+.store-button {
+    min-width: calc_vw(200vw);
+    height: calc_vh(50vh);
+    border: calc_vh(2vh) solid #FFC600;
+    background-color: transparentize($color: #FFC600, $amount: 0.75);
+    border-radius: calc_vh(25vh);
+    font-size: calc_vh(24vh);
+    color: #fff;
+
+    &:hover {
+        background-color: transparentize($color: #FFC600, $amount: 0.4);
+    }
+}

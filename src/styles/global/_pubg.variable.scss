@@ -1,0 +1,202 @@
+@use "sass:math";
+
+/*
+  w: (custom width / 1080) * 100;
+  h: (custom height / 1080) * 100;
+*/
+
+/* Default Screen */
+$win_w: 1920;
+$win_h: 1080;
+
+/* Change width: vw*/
+@function calc_vw($val) {
+    @return math.div($val, $win_w) * 100;
+}
+
+/* Change height: vh*/
+@function calc_vh($val) {
+    @return math.div($val, $win_h) * 100;
+}
+
+@function calc_letter_spacing($val, $ls) {
+    @return math.div(calc_vh($val), 1000) * $ls;
+}
+
+/* Image path */
+$img: "../images";
+$img_common: "../images/common";
+$img_pad-v2: "../images/v2/pad";
+$build_img_common_path: "coui://uiresources/assets/images/common";
+
+$pcimg_common: "../images/pubg-pc1/common/";
+$pcimg: "../images/pubg-pc1/";
+
+/* Color Token */
+$gray050: #ededf2; // rgba(237, 237, 242)
+$gray100: #c6c7cc; // rgba(198, 198, 204)
+$gray200: #9ea0a6; // rgba(158, 160, 166)
+$gray300: #787b80; // rgba(120, 123, 128)
+$gray400: #5e6166; // rgba(94, 97, 102)
+$gray500: #45494d; // rgba(69, 73, 77)
+$gray600: #2e3236; // rgba(46, 50, 54)
+$gray700: #25292c; // rgba(37, 41, 44)
+$gray800: #1e2326; // rgba(30, 35, 38)
+$gray900: #101214; // rgba(16, 18, 20)
+$warmgray050: #e6e6d5; // rgba(230, 230, 213)
+$warmgray100: #ccccbe; // rgba(204, 204, 190)
+$warmgray200: #a6a69a; // rgba(166, 166, 154)
+$warmgray300: #808077; // rgba(128, 128, 119)
+$warmgray400: #5d5e57; // rgba(93, 94, 87)
+$warmgray500: #4b4d45; // rgba(75, 77, 69)
+$warmgray600: #373832; // rgba(55, 56, 50)
+$warmgray700: #2a2c28; // rgba(42, 44, 40)
+$warmgray800: #20211e; // rgba(32, 33, 30)
+$warmgray900: #151614; // rgba(21, 22, 20)
+$greengray050: #cfe6d9; // rgba(207, 230, 217)
+$greengray100: #a3ccb4; // rgba(163, 204, 180)
+$greengray200: #78a68d; // rgba(120, 166, 141)
+$greengray300: #54806a; // rgba(84, 128, 106)
+$greengray400: #3e5e4e; // rgba(62, 94, 78)
+$greengray500: #2e4d3e; // rgba(46, 77, 62)
+$greengray600: #203b2f; // rgba(32, 59, 47)
+$greengray700: #172e23; // rgba(23, 46, 35)
+$greengray800: #10241a; // rgba(16, 36, 26)
+$greengray900: #0a1a15; // rgba(10, 26, 21)
+$olivegray050: #d5e6cf; // rgba(213, 230, 207)
+$olivegray100: #adcca3; // rgba(173, 204, 163)
+$olivegray200: #83a678; // rgba(131, 166, 120)
+$olivegray300: #638054; // rgba(99, 128, 84)
+$olivegray400: #4b5e3e; // rgba(75, 94, 62)
+$olivegray500: #3b4d2e; // rgba(59, 77, 46)
+$olivegray600: #2b3b20; // rgba(43, 59, 32)
+$olivegray700: #212e17; // rgba(33, 46, 23)
+$olivegray800: #182410; // rgba(24, 36, 16)
+$olivegray900: #111a0a; // rgba(17, 26, 10)
+$yellow050: #fffccc; // rgba(255, 252, 204)
+$yellow100: #fff899; // rgba(255, 248, 153)
+$yellow200: #fff153; // rgba(255, 241, 83)
+$yellow200-focus: #fff153; // console focus 교체해야할 부분
+$yellow300: #edd900; // rgba(237, 217, 0)
+$yellow400: #bfac00; // rgba(191, 172, 0)
+$yellow500: #8f7f0e; // rgba(143, 127, 14)
+$yellow600: #615513; // rgba(97, 85, 19)
+$yellow700: #423b14; // rgba(66, 59, 20)
+$yellow800: #19160a; // rgba(25, 22, 10)
+$red050: #ffccce; // rgba(255, 204, 206)
+$red100: #ff999c; // rgba(255, 153, 156)
+$red200: #ff666b; // rgba(255, 102, 107)
+$red300: #ed3b41; // rgba(237, 59, 65)
+$red400: #cc212c; // rgba(204, 33, 44)
+$red500: #99181d; // rgba(153, 24, 29)
+$red600: #660c0f; // rgba(102, 12, 15)
+$red700: #4d080b; // rgba(77, 8, 11)
+$red800: #330507; // rgba(51, 5, 7)
+$blue050: #ccf8ff; // rgba(0, 152, 194)
+$blue100: #99f1ff; // rgba(0, 152, 194)
+$blue200: #66ebff; // rgba(0, 152, 194)
+$blue300: #00caf2; // rgba(0, 152, 194)
+$blue400: #0098c2; // rgba(0, 152, 194)
+$blue500: #006b99; // rgba(0, 107, 153)
+$blue600: #003666; // rgba(0, 54, 102)
+$blue700: #00294d; // rgba(0, 41, 77)
+$blue800: #001333; // rgba(0, 19, 51)
+$green050: #ccffe0; // rgba(204, 255, 224)
+$green100: #99ffc0; // rgba(153, 255, 192)
+$green200: #66ffa1; // rgba(102, 255, 161)
+$green300: #1ce669; // rgba(28, 230, 105)
+$green400: #08bf4e; // rgba(8, 191, 78)
+$green500: #00993b; // rgba(0, 153, 59)
+$green600: #006627; // rgba(0, 102, 39)
+$green700: #004d1d; // rgba(0, 77, 29)
+$green800: #003314; // rgba(0, 51, 20)
+
+/* Primary color */
+$pubg-white: #eeeeee; // rgba(238, 238, 238)
+$pubg-black: #1b1b1b; // rgba(27, 27, 27)
+$pubg-yellow-light: #ffdc40; // rgba(255, 220, 64)
+$pubg-yellow: #ffc600; // rgba(255, 198, 0)
+$pubg-yellow-dark: #e6ac00; // rgba(229, 172, 0)
+/* Effect color */
+$modal-overlay: rgba(16, 18, 20, 0.85);
+$shadow-black: rgba(0, 0, 0, 0.6);
+$shadow-black-old: rgba(0, 0, 0, 0.4);
+/* etc */
+$point_color: #ffc600;
+
+$pass-color: rgba(3, 154, 226);
+$pass-color-bright: #b8f4ff;
+//$pass-color-light: #80C7EA;
+
+
+
+/* Effect Token */
+$shadow050: 0 calc_vh(1vh) calc_vh(2vh) rgba(0, 0, 0, 0.4);
+$shadow100: 0 calc_vh(2vh) calc_vh(4vh) rgba(0, 0, 0, 0.5);
+$shadow200: 0 calc_vh(3vh) calc_vh(6vh) rgba(0, 0, 0, 0.6);
+$shadow300: 0 calc_vh(4vh) calc_vh(10vh) rgba(0, 0, 0, 0.7);
+$shadow-modal: 0 calc_vh(16vh) calc_vh(24vh) rgba(0, 0, 0, 0.4);
+$light-white050: 0 0 calc_vh(2vh) rgba($olivegray050, 0.6);
+$light-white100: 0 0 calc_vh(4vh) rgba($olivegray050, 0.6);
+$light-white200: 0 0 calc_vh(6vh) rgba($olivegray050, 0.6);
+$light-yellow050: 0 0 calc_vh(2vh) rgba($yellow200, 0.7);
+$light-yellow100: 0 0 calc_vh(4vh) rgba($yellow200, 0.7);
+
+/* popup */
+$dim-zindex: 1400;
+$modal-zindex: 1500;
+$invite-toast: 1600;
+$full-screen-modal-zindex: 1199;
+
+/* matchmaking banner z-index */
+$matchmaking-banner-zindex: 10;
+
+/*
+	This value will scale down to one pixel for ~900px tall screens
+	but still only be 2px for 4k, ideal for thin borders
+*/
+$hairline_border: calc_vh(1.24vh);
+
+// Make new layer. https://coherent-labs.com/Documentation/cpp-gt/d7/d51/layers_how_to_use.html
+@mixin new-layer {
+    transform: rotateX(0deg);
+}
+
+/* App colors */
+$pubg_yellow_1: $point_color;
+$disable_grey: #6e6e6e;
+$subtitle_white: #bfbfbf;
+
+/* Neutral colors */
+/* https://www.figma.com/file/Ua8c7NJbK32q0m86R6jRRS/PUBG-Master?node-id=12%3A2 */
+$secondary_neutral_1: rgb(119, 119, 119);
+$secondary_neutral_2: rgb(85, 85, 85);
+$secondary_neutral_3: rgb(68, 68, 68);
+$secondary_neutral_4: rgb(0, 0, 13);
+$secondary_neutral_5: rgb(122, 122, 128);
+$secondary_neutral_6: rgb(62, 62, 69);
+$secondary_neutral_7: rgb(49, 49, 54); //#313136
+$secondary_neutral_8: rgb(34, 34, 38);
+$secondary_neutral_9: rgb(51, 51, 51); //#333333
+$secondary_neutral_10: rgb(64, 64, 68); //#404044
+$secondary_neutral_11: rgb(47, 47, 49); //#2f2f31
+$primary_light: rgb(238, 238, 238);
+$secondary_light: rgba(237, 237, 242, 1);
+$modal_shadow: rgba(16, 16, 20, 0.8);
+$box_shadow: rgba(0, 0, 0, 0.6);
+$primary_dark: #1b1b1b;
+$friends_screen_gray: #59595a;
+$white: #fff;
+
+//mastery.variable.scss
+$wm_pure_white: #eeeeee;
+$wm_pure_black: rgb(0, 0, 0);
+$mastery_victory_yellow: #fff153;
+
+$focus_outline: calc_vh(3vh) solid #fff153;
+$focus_shadow: 0 0 calc_vh(3vh) calc_vh(3vh) #fff153;
+$highlight_outline: calc_vh(3vh) solid #eeeeee;
+
+$mastery_container_bkg_a05: rgba(255, 255, 255, .05);
+$mastery_container_bkg_a10: rgba(255, 255, 255, .1);
+$mastery_container_bkg_a20: rgba(255, 255, 255, .2);

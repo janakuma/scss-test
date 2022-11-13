@@ -1,0 +1,146 @@
+﻿$img_icon: "../images/common/icon";
+$img_icon_v2: "../../assets/images/v2/store/icon";
+
+[class*="icon-"] {
+    position: relative;
+    display: inline-block;
+    font-size: 0;
+    vertical-align: middle;
+    &.disable {
+        pointer-events: none;
+        opacity: 0.6;
+    }
+}
+
+.icon-undo {
+    width: calc_vh(37vh);
+    height: calc_vh(29vh);
+}
+
+.icon-close {
+    width: calc_vh(15vh);
+    height: calc_vh(16vh);
+}
+
+.icon-warning {
+    top: calc_vh(-1vh);
+    width: calc_vh(22vh);
+    height: calc_vh(19vh);
+    margin: 0 calc_vh(3vh) 0;
+
+    &.on {
+
+    }
+    &.lg {
+        width: calc_vh(53vh);
+        height: calc_vh(46vh);
+    }
+}
+
+.icon-lock {
+    top: calc_vh(-2vh);
+    width: calc_vh(14vh);
+    height: calc_vh(19vh);
+}
+
+.icon-clock {
+    width: calc_vh(28vh);
+    height: calc_vh(28vh);
+}
+
+.icon-timer {
+    width: calc_vh(25vh);
+    height: calc_vh(25vh);
+
+    &.red {
+
+    }
+}
+
+.icon-remove {
+    width: calc_vh(30vh);
+    height: calc_vh(30vh);
+
+    &:hover {
+
+    }
+}
+
+.icon-host {
+    width: calc_vh(11vh);
+    height: calc_vh(11vh);
+}
+
+.icon-left {
+    width: calc_vh(14vh);
+    height: calc_vh(14vh);
+}
+
+.mask-close {
+    display: inline-block;
+    width: calc_vh(17vh);
+    height: calc_vh(17vh);
+}
+
+.icon-info1 {
+    width: calc_vh(25vh);
+    height: calc_vh(25vh);
+    vertical-align: middle;
+}
+
+.mask-ready {
+    display: inline-block;
+    width: calc_vh(49vh);
+    height: calc_vh(36vh);
+    vertical-align: middle;
+}
+
+/* Module Item */
+.icon-module-clock {
+    width: calc_vh(27vh);
+    height: calc_vh(27vh);
+}
+
+.icon-check {
+    width: calc_vh(27vh);
+    height: calc_vh(27vh);
+}
+
+.icon-check {
+    width: calc_vh(20vh);
+    height: calc_vh(20vh);
+}
+
+.icon-ready {
+    width: calc_vh(35vh);
+    height: calc_vh(26vh);
+}
+
+.icon-remain-time-timer {
+    width: calc_vw(24vw);
+    height: calc_vh(24vh);
+}
+
+.icon-message {
+    width: calc_vh(16vh);
+    height: calc_vh(11vh);
+}
+
+.toast-icon {
+    width: auto;
+    height: calc_vh(20vh);
+    margin-right: calc_vh(5vh);
+    margin-top: calc_vh(-3vh);
+}
+
+.icon-battle-stat {
+    width: calc_vh(30vh);
+    height: calc_vh(30vh);
+    margin: auto calc_vh(10vh) auto 0;
+}
+
+.icon-battle-stat-killcount {
+    width: calc_vh(4vh);
+    height: calc_vh(20vh);
+    margin: auto calc_vh(8vh) auto 0;
+}

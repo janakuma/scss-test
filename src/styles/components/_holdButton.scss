@@ -1,0 +1,205 @@
+/*
+	$name 속성을 유니크한 값으로 꼭 넣어주세요.
+	넣지 않는다면 다른 곳에서 원하지 않는 결과를 얻게 될 것입니다.
+
+	Be sure to enter the '$name' attribute. Must be a unique value
+	If you don't, you'll get unwanted results elsewhere.
+
+	ex)
+	*GOOD
+	@include holdProgressBar($name: 'holdbutton', $hold_time: 2s);
+
+	*BAD
+	@include holdProgressBar($hold_time: 2s);
+
+	v2 holdpress
+	버튼 크기 기준보다 2px 작게해야 기본버튼 외각선이 안보인다.
+	크롬에서는 보더배경보다 progress 사이즈를 크게 해야 이질감이 없지만 콘솔에서는 괜찮게 보인다.
+
+*/
+@use "sass:math";
+@use "../global/pubg.variable" as *;
+
+// Circle holdpress
+@mixin holdProgressBar(
+    $name,
+    $border_size: calc_vh(3vh),
+    $circle_size: calc_vh(30vh),
+    $circle_size_small: calc_vh(24vh),
+    $hold_time: 1s,
+    $border_color: $gray100,
+    $arrow_color: $gray050,
+    $size: "medium"
+) {
+    @if $name == "" {
+        @error '$name attribute is required';
+    }
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        z-index: 10;
+        top: calc_vh(-4vh);
+        left: 50%;
+        width: calc_vh(14vh);
+        height: calc_vh(12vh);
+        transform: translateX(-50%);
+        background-size: cover;
+    }
+
+    .holdProgress {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: $circle_size;
+        height: $circle_size;
+        //padding: calc_vh(1vh);
+
+        &:after {
+            box-sizing: border-box;
+            content: "";
+            display: block;
+            //width: $circle_size - calc_vh(2vh);
+            //height: $circle_size - calc_vh(2vh);
+            width: $circle_size;
+            height: $circle_size;
+            border-radius: 50%;
+            //border: ($border_size - calc_vh(1vh)) solid $gray500;
+            border: $border_size solid $gray500;
+        }
+
+        &.run i {
+            display: block;
+        }
+
+        i {
+            overflow: hidden;
+            display: none;
+            position: absolute;
+            width: math.div($circle_size, 2);
+            height: 0;
+
+            &:after {
+                content: "";
+                box-sizing: border-box;
+                position: absolute;
+                width: $circle_size;
+                height: $circle_size;
+                border-radius: 50%;
+                border: $border_size solid $border_color;
+            }
+        }
+
+        i.side-a,
+        i.side-a:after {
+            bottom: 0;
+            left: 0;
+        }
+
+        i.side-b,
+        i.side-b:after {
+            top: 0;
+            right: 0;
+        }
+
+        i.side-a {
+            animation: progress-#{$name} math.div($hold_time, 2) math.div($hold_time, 2) forwards linear;
+        }
+        i.side-b {
+            animation: progress-#{$name} math.div($hold_time, 2) forwards linear;
+        }
+    }
+
+    @if $size == "small" {
+        &:before {
+            top: calc_vh(-3vh);
+            width: calc_vh(10vh);
+            height: calc_vh(8vh);
+        }
+    }
+
+    @keyframes progress-#{$name} {
+        from {
+            height: 0;
+        }
+        to {
+            height: $circle_size;
+        }
+    }
+}
+
+// Bar holdpress
+@mixin holdProgressBarLine(
+    $name,
+    $bar_size: calc_vh(24vh),
+    $hold_time: 1s,
+    $bar_color: $gray050,
+    $bar_bg_color: $gray500,
+    $size: "medium"
+) {
+    @if $name == "" {
+        @error '$name attribute is required';
+    }
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        z-index: 10;
+        top: calc_vh(-8vh);
+        left: 50%;
+        width: calc_vh(14vh);
+        height: calc_vh(12vh);
+        transform: translateX(-50%);
+
+        background-size: cover;
+    }
+
+    .holdProgress {
+        position: absolute;
+        bottom: calc_vh(-3vh);
+        left: 50%;
+        transform: translateX(-50%);
+        width: $bar_size;
+        height: calc_vh(2vh);
+        outline: calc_vh(1vh) solid rgba(69, 73, 77, 0.3);
+        background-color: $bar_bg_color;
+
+        &.run .side-a {
+            display: block;
+        }
+
+        .side-a {
+            display: none;
+            width: 0;
+            height: calc_vh(2vh);
+            background-color: $bar_color;
+            animation: progressBar-#{$name} $hold_time forwards linear;
+        }
+        .side-b {
+            display: none;
+        }
+    }
+
+    @keyframes progressBar-#{$name} {
+        from {
+            width: 0;
+        }
+        to {
+            width: 100%;
+        }
+    }
+
+    @if $size == "small" {
+        &:before {
+            top: calc_vh(-5vh);
+            width: calc_vh(9.33vh);
+            height: calc_vh(8vh);
+        }
+        .holdProgress {
+            width: $bar_size;
+        }
+    }
+}

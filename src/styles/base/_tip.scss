@@ -1,0 +1,113 @@
+﻿﻿/* TIP */
+.hover-tip {
+    .tip {
+        display: none;
+        opacity: 0;
+    }
+    &:hover {
+        position: relative;
+        z-index: 20;
+        .tip {
+            display: inline-block !important;
+            opacity: 1;
+        }
+    }
+}
+
+.tip {
+    position: absolute;
+    top: 100%;
+    padding: calc_vh(2vh) calc_vh(15vh);
+    border: 1px solid #fff;
+    line-height: 1.4;
+    font-size: calc_vh(14vh);
+    font-weight: 400;
+    white-space: nowrap;
+
+
+    &:after {
+        content: '';
+        display: inline-block;
+        width: calc_vh(8vh);
+        height: calc_vh(8vh);
+        position: absolute;
+        box-shadow: inset 1px 1px 0 0 #fff;
+
+    }
+
+    &.arrow-top {
+        &:after {
+            top: 0;
+            left: 50%;
+            transform: rotate(45deg) translate(calc_vh(-7vh), 0);
+        }
+    }
+
+    &.arrow-bottom {
+        &:after {
+            bottom: 0;
+            left: 50%;
+            transform: rotate(225deg) translate(0, calc_vh(-7vh));
+        }
+    }
+
+    &.arrow-left {
+        &:after {
+            top: 50%;
+            left: 0;
+            transform: rotate(-45deg) translate(0, calc_vh(-7vh));
+        }
+    }
+}
+/* //TIP */
+
+/* extend-tip */
+.extend-tip {
+    position: relative;
+    top: calc_vh(-3vh);
+    display: inline-block;
+    width: calc_vh(20vh);
+    height: calc_vh(20vh);
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.extend-tip-list {
+    opacity: 0;
+    pointer-events: none;
+    box-sizing: border-box;
+    min-width: calc_vh(300vh);
+    padding: calc_vh(14vh) calc_vh(20vh) calc_vh(16vh);
+    box-sizing: border-box;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+
+	&::before, &::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		height: calc_vh(1vh);
+		width: 100%;
+
+	}
+	&::before {
+		top: 0;
+	}
+	&::after {
+		bottom: 0;
+	}
+
+    li,
+    p {
+        line-height: calc_vh(24vh);
+        font-size: calc_vh(20vh);
+        color: rgba(255, 255, 255, 0.8);
+    }
+    li {
+        text-indent: calc_vh(-19vh);
+        padding-left: calc_vh(19vh);
+    }
+    li ~ li {
+        margin-top: calc_vh(8vh);
+    }
+}
+//extend-tip */

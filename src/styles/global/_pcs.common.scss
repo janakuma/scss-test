@@ -1,0 +1,122 @@
+@use "./pubg.variable" as *;
+
+$coui: "coui://uiresources/assets/images/esports/pcs";
+$coui_pgis: "coui://uiresources/assets/images/esports/pgis";
+$pcs_series_color: #c94848;
+
+* {
+    box-sizing: border-box;
+}
+
+// flex의 상하 정렬 mixin
+@mixin flex-layout($justify, $align) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+.esports-tab-layout {
+    padding: calc_vh(186vh) calc_vh(78vh) calc_vh(60vh) calc_vh(90vh) !important;
+
+    background-size: cover;
+}
+
+.esports-tab-overview {
+    padding: calc_vh(186vh) calc_vh(188vh) calc_vh(60vh) !important;
+
+    background-size: cover;
+}
+
+/*
+    list-navigation 컴포넌트 기반으로 만든 tab
+    list-navigation을 사용하지 않는 이유는 lock 기능이 추가 되어 Esports에서 따로 사용
+*/
+.esports-navigation {
+    display: flex;
+    > div {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: calc_vh(160vh);
+        height: calc_vh(44vh);
+        color: $warmgray300;
+        box-sizing: border-box;
+        border-bottom: calc_vh(1vh) solid $warmgray500;
+        position: relative;
+        &[class*="noti-badge"]:before,
+        &[class*="noti-badge"]:after {
+            right: calc_vh(13vh);
+            top: calc_vh(13vh);
+        }
+        &.disabled {
+            pointer-events: none;
+            i.pubg-icon-lock {
+                display: block;
+                margin-right: calc_vh(10vh);
+            }
+        }
+        p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 calc_vh(24vh) calc_vh(1vh);
+            width: 100%;
+            height: 100%;
+            i {
+                display: none;
+            }
+        }
+        &:first-child {
+            border-bottom: calc_vh(1vh) solid;
+            border-image-source: linear-gradient(90deg, rgba($warmgray500, 0.4) 0%, $warmgray500 100%);
+            border-image-slice: 1;
+        }
+        &:hover {
+            color: $pubg-white;
+            p {
+                background: linear-gradient(180deg, rgba(75, 77, 69, 0.6) 0%, rgba(75, 77, 69, 0.18) 100%);
+            }
+        }
+        &.active {
+            color: $gray050;
+            text-shadow: 0px 0px 2px rgba(213, 230, 207, 0.6);
+            border-bottom: calc_vh(1vh) solid transparent;
+            border-image-source: none;
+            p {
+                padding: 0 calc_vh(24vh) calc_vh(2vh);
+                border-top: calc_vh(1vh) solid $warmgray300;
+                background: radial-gradient(
+                    100% 100% at 50% -0.01%,
+                    rgba(131, 166, 120, 0.25) 0%,
+                    rgba(190, 212, 183, 0.0703125) 56.77%,
+                    rgba(213, 230, 207, 0) 100%
+                );
+                font-size: calc_vh(21vh);
+                &::before,
+                &::after {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    width: 1px;
+                    height: calc_vh(44vh);
+                    background: linear-gradient(180deg, #808077 0%, #4b4d45 100%);
+                }
+                &::before {
+                    left: 0;
+                }
+                &::after {
+                    right: 0;
+                }
+            }
+        }
+    }
+    .line {
+        display: inline-block;
+        flex: 1;
+        border-bottom: calc_vh(1vh) solid;
+        border-image-source: linear-gradient(to left, rgba($warmgray500, 0.4) 0%, $warmgray500 calc_vh(148vh));
+        border-image-slice: 1;
+    }
+}

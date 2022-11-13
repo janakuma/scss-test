@@ -1,0 +1,198 @@
+﻿@use "../global/pubg.variable" as *;
+@use "../components/holdButton" as *;
+
+/* PAD KEY: Common */
+.padkey {
+    display: inline-flex;
+    line-height: calc_vh(28vh);
+    font-size: calc_vh(26vh);
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #eee;
+    cursor: pointer;
+    mark[class*="key-"] {
+        margin: calc_vh(0vh) calc_vh(8vh) 0 0;
+        vertical-align: top;
+    }
+
+    i.hold {
+        color: #ffd986;
+    }
+
+    [class*="map-"] {
+        background-color: #fff;
+    }
+
+    &.button-disabled {
+        opacity: 0.4;
+    }
+
+    &.relative {
+        position: relative;
+    }
+}
+
+mark {
+    background-color: transparent;
+}
+mark[class^="key-"] {
+    position: relative;
+    display: inline-block;
+    width: calc_vh(30vh);
+    height: calc_vh(30vh);
+    font-size: 0;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+}
+
+mark[class^="key-"] {
+    &.sideflow {
+        position: absolute;
+        left: calc_vh(-38vh);
+        top: 50%;
+        transform: translate(0, -50%);
+    }
+}
+
+mark[class*="bumper-"],
+mark[class*="trigger-"] {
+    display: inline-block;
+    font-size: 0;
+    vertical-align: middle;
+    background: no-repeat 0 0;
+    background-size: cover;
+}
+
+mark[class*="bumper-"] {
+    width: calc_vh(34vh);
+    height: calc_vh(24vh);
+}
+
+mark[class*="trigger-"] {
+    width: calc_vh(31vh);
+    height: calc_vh(28vh);
+}
+
+mark[class*="horizontal-"] {
+    width: calc_vh(46vh);
+    height: calc_vh(30vh);
+}
+
+mark[class*="vertical-"] {
+    width: calc_vh(30vh);
+    height: calc_vh(46vh);
+    top: calc_vh(-8vh);
+    left: calc_vh(-38vh);
+    position: absolute;
+}
+
+// Used to position the vertical button like the other buttons, while respecting the height difference
+// Above vertical should be refactored not to use position absolute for globals
+mark[class*="override-vertical"] {
+    position: relative;
+    width: calc_vh(30vh);
+    height: calc_vh(30vh);
+    margin-top: calc_vh(-8vh) !important;
+    margin-bottom: calc_vh(-8vh) !important;
+    padding-top: calc_vh(8vh);
+    padding-bottom: calc_vh(8vh);
+    top: 0;
+    left: 0;
+}
+
+.hotkey-display {
+    span {
+        mark {
+            &.scroll-icon {
+                position: relative;
+                width: calc_vh(30vh);
+                height: calc_vh(46vh);
+                margin-top: calc_vh(-8vh);
+                margin-bottom: calc_vh(-8vh);
+            }
+        }
+    }
+}
+/* xbox ps4 */
+$platform-array: xbox ps4 nintendo stadia others;
+$key-array: key-a key-b key-y key-x key-r key-l key-l-left key-l-right key-r-large key-view key-menu key-l-rotate
+    key-r-rotate key-r-scroll key-vertical-l key-horizontal-r key-d key-r-left key-r-right
+    key-dd key-dl key-dlr key-dr key-du key-l-hold key-r-hold key-menu-hold key-view-hold;
+
+@each $platform in $platform-array {
+    @each $key in $key-array {
+        @if $key == key-l-rotate or $key == key-r-rotate {
+            .#{$key} {
+                width: calc_vh(46vh) !important;
+            }
+        }
+
+        @if $key == key-l-left or $key == key-l-right or $key == key-r-right or $key == key-r-left {
+            .#{$key} {
+                width: calc_vh(38vh);
+            }
+        }
+    }
+
+    //bumper
+}
+
+/* 공통 키 작업하기 */
+
+// Stadia doesn't support touch pad button, use Share button instead.
+.pubg-ps4.use-key-share .key-view {
+
+}
+
+.holdpress {
+    @include holdProgressBar($name: "padkey-holdpress");
+    position: relative;
+    width: calc_vh(30vh) !important;
+    height: calc_vh(30vh) !important;
+    margin-right: calc_vh(10vh);
+    background-size: cover;
+}
+
+.holdpress-small {
+    @include holdProgressBar(
+        $name: "padkey-holdpress-small",
+        $circle_size: calc_vh(24vh),
+        $border_size: calc_vh(2.5vh),
+        $size: "small"
+    );
+    position: relative;
+    width: calc_vh(24vh) !important;
+    height: calc_vh(24vh) !important;
+    margin-right: calc_vh(10vh);
+    background-size: cover;
+}
+
+// Circle holdpress
+.holdpressBar {
+    @include holdProgressBarLine($name: "padkey-holdpressBar");
+    position: relative;
+    width: calc_vh(28vh) !important;
+    height: calc_vh(24vh) !important;
+    margin-right: calc_vh(10vh);
+    background-size: contain !important;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+// Bar holdpress
+.holdpressBar-small {
+    @include holdProgressBarLine(
+        $name: "padkey-holdpressBar-small",
+        $bar_size: calc_vh(20vh),
+        $size: "small"
+
+    );
+    position: relative;
+    width: calc_vh(22vh) !important;
+    height: calc_vh(20vh) !important;
+    margin-right: calc_vh(10vh);
+    background-size: contain !important;
+    background-position: center;
+    background-repeat: no-repeat;
+}

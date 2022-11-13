@@ -1,0 +1,706 @@
+﻿@use "./mixin" as *;
+@use "../global/pubg.variable" as *;
+@use "../base" as *;
+
+/* Tooltips Component */
+.tooltip-component-wrapper:hover .tooltip-component,
+.tooltip-component.show {
+    display: block;
+}
+.tooltip-component {
+    position: absolute;
+    //pointer-events: none; // 스크롤 있을경우 삭제
+    display: none;
+    min-width: calc_vh(300vh);
+    max-width: calc_vh(300vh);
+    padding: calc_vh(9vh) calc_vh(12vh) calc_vh(11vh);
+    font-weight: normal;
+    word-break: break-word;
+    box-sizing: border-box;
+    box-shadow: $shadow300;
+    border: calc_vh(1vh) solid transparent;
+    z-index: 3;
+
+    &.shot-text {
+        min-width: calc_vh(120vh);
+        white-space: nowrap;
+    }
+
+    h5 {
+        margin-bottom: calc_vh(2vh);
+        font-size: calc_vh(18vh); /* type-l3으로 대체 */
+        line-height: calc_vh(26vh);
+        color: $warmgray100;
+    }
+    li,
+    p {
+        font-size: calc_vh(16vh); /* type-p4으로 대체 */
+        line-height: calc_vh(24vh);
+        color: $warmgray100;
+    }
+    p.line {
+        margin-bottom: calc_vh(10vh);
+        padding-bottom: calc_vh(10vh);
+        border-bottom: calc_vh(1vh) solid rgba($warmgray500, 0.3);
+    }
+    ul {
+        li {
+            padding-left: calc_vh(15vh);
+            text-indent: calc_vh(-15vh);
+            font-size: calc_vh(16vh); /* type-p4으로 대체 */
+            line-height: calc_vh(24vh);
+        }
+        li ~ li {
+            margin-top: calc_vh(4vh);
+        }
+    }
+    .pubg-scroll {
+        max-height: calc_vh(210vh);
+    }
+}
+
+/* Scroll Component */
+.pubg-scroll {
+    overflow: hidden !important;
+    overflow-y: overlay !important; //이 속성을 적용할 경우 scroll이 공간을 차지하지 않는 형태로 구현된다.
+    margin: 0;
+    padding-right: calc_vh(12vh);
+
+    &::-webkit-scrollbar {
+        width: calc_vh(8vh);
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-track {
+        @include borderGradiant(
+            linear-gradient(
+                180deg,
+                rgba($gray400, 0) 0%,
+                rgba($gray400, 0.3) 5.21%,
+                rgba($gray400, 0.3) 94.89%,
+                rgba($gray400, 0) 100%
+            ),
+            1px
+        );
+        box-sizing: border-box;
+    }
+
+
+
+    &:hover {
+
+    }
+
+    // &::-webkit-scrollbar-thumb:hover {
+    //     background-color: $warmgray050;
+    // }
+}
+
+.pubg-scroll-h {
+    overflow: hidden;
+    overflow-x: auto;
+    margin: 0;
+    padding-bottom: calc_vh(10vh);
+
+    &::-webkit-scrollbar {
+        height: calc_vh(8vh);
+    }
+}
+
+.pubg-r-scroll-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    &.isConsole {
+        &.active {
+            &::before {
+                display: block;
+            }
+        }
+    }
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: none;
+        width: calc_vh(30vh);
+        height: calc_vh(30vh);
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        background-position: center;
+        transform: translate(calc_vh(11vh), calc_vh(-2vh));
+    }
+
+    .pubg-scroll {
+        &::-webkit-scrollbar-track {
+            margin-top: calc_vh(30vh);
+        }
+    }
+}
+.pubg-l-scroll-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    &.isConsole {
+        &::before {
+            display: block;
+        }
+    }
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: none;
+        width: calc_vh(30vh);
+        height: calc_vh(46vh);
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        background-position: center;
+        transform: translate(calc_vh(11vh), calc_vh(-2vh));
+    }
+}
+
+/* badge */
+.badge {
+    position: relative;
+    &::before,
+    &::after {
+        position: absolute;
+        right: calc_vh(-7vh);
+        top: calc_vh(9vh);
+        transform: translate(50%, -50%);
+    }
+
+    &::before {
+        content: "";
+        width: calc_vh(12vh);
+        height: calc_vh(12vh);
+        background-color: rgba($pubg-yellow, 0.2);
+        border-radius: 50%;
+        animation: badge-effect 0.5s infinite alternate;
+    }
+
+    &::after {
+        content: "";
+        width: calc_vh(6vh);
+        height: calc_vh(6vh);
+        background-color: $pubg-yellow;
+        border-radius: 50%;
+    }
+
+    @keyframes badge-effect {
+        from {
+            transform: translate(50%, -50%) scale(0.6);
+        }
+        to {
+            transform: translate(50%, -50%) scale(1);
+        }
+    }
+}
+.badge-count {
+    display: block;
+    position: absolute;
+    top: calc_vh(6vh);
+    right: calc_vh(-4vh);
+    transform: translate(100%, 0);
+    width: calc_vh(18vh);
+    height: calc_vh(16vh);
+    text-align: center;
+    font-size: calc_vh(14vh);
+    font-weight: bold;
+    line-height: 1;
+    color: $pubg-black;
+    border-radius: calc_vh(4vh);
+
+    &.plus {
+        width: calc_vh(26vh);
+    }
+}
+/* uiux 2.0 개편  badge */
+.noti-badge {
+    position: relative;
+    &::before,
+    &::after {
+        position: absolute;
+        content: "";
+        width: calc_vh(24vh);
+        height: calc_vh(24vh);
+        top: calc_vh(10vh);
+        right: calc_vh(-12vh);
+        transform: translate(50%, -50%);
+    }
+    &::before {
+
+        background-size: calc_vh(120vh) calc_vh(60vh);
+        background-position: 0 calc_vh(-30vh);
+        animation: noti-badge-effect 2s infinite;
+    }
+    &::after {
+
+        background-size: calc_vh(120vh) calc_vh(60vh);
+    }
+}
+
+.noti-badge-reward {
+    position: relative;
+    &::before,
+    &::after {
+        position: absolute;
+        content: "";
+        width: calc_vh(30vh);
+        height: calc_vh(30vh);
+        top: calc_vh(10vh);
+        right: calc_vh(-12vh);
+        transform: translate(50%, -50%);
+    }
+    &::before {
+
+        background-size: calc_vh(148vh) calc_vh(76vh);
+        background-position: 0 calc_vh(-38vh);
+        animation: noti-badge-effect 2s infinite;
+    }
+    &::after {
+
+        background-size: calc_vh(148vh) calc_vh(76vh);
+    }
+}
+
+.noti-badge-strong {
+    position: relative;
+    &::before,
+    &::after {
+        position: absolute;
+        content: "";
+        width: calc_vh(30vh);
+        height: calc_vh(30vh);
+        top: calc_vh(10vh);
+        right: calc_vh(-12vh);
+        transform: translate(50%, -50%);
+    }
+    &::before {
+
+        background-size: calc_vh(120vh) calc_vh(60vh);
+        background-position: calc_vh(-24vh) calc_vh(-30vh);
+        animation: noti-badge-effect 2s infinite;
+    }
+    &::after {
+
+        background-size: calc_vh(120vh) calc_vh(60vh);
+        background-position: calc_vh(-24vh) 0;
+    }
+}
+
+.noti-badge-reward-strong {
+    position: relative;
+    &::before,
+    &::after {
+        position: absolute;
+        content: "";
+        width: calc_vh(38vh);
+        height: calc_vh(38vh);
+        top: calc_vh(10vh);
+        right: calc_vh(-12vh);
+        transform: translate(50%, -50%);
+    }
+    &::before {
+
+        background-size: calc_vh(148vh) calc_vh(76vh);
+        background-position: calc_vh(-30vh) calc_vh(-38vh);
+        animation: noti-badge-effect 2s infinite;
+    }
+    &::after {
+
+        background-size: calc_vh(148vh) calc_vh(76vh);
+        background-position: calc_vh(-30vh) 0;
+    }
+}
+
+.noti-badge-count {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc_vh(30vh);
+    height: calc_vh(30vh);
+    color: $yellow050;
+    font-weight: bold;
+    font-size: calc_vh(14vh);
+    text-shadow: 0 0 2px rgba($yellow200, 0.7);
+    z-index: 1;
+
+    em {
+        position: relative;
+        z-index: 1;
+    }
+    &::before,
+    &::after {
+        position: absolute;
+        content: "";
+        width: calc_vh(30vh);
+        height: calc_vh(30vh);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    &::before {
+
+        background-size: calc_vh(120vh) calc_vh(60vh);
+        background-position: calc_vh(-54vh) calc_vh(-30vh);
+        animation: noti-badge-count-effect 2s infinite;
+    }
+    &::after {
+
+        background-size: calc_vh(120vh) calc_vh(60vh);
+        background-position: calc_vh(-54vh) 0;
+    }
+    &.large,
+    &.plus {
+        width: calc_vh(36vh);
+        height: calc_vh(30vh);
+        &::before,
+        &::after {
+            width: calc_vh(36vh);
+            height: calc_vh(30vh);
+        }
+        &::before {
+            background-position: calc_vh(-84vh) calc_vh(-30vh);
+        }
+        &::after {
+            background-position: calc_vh(-84vh) 0;
+        }
+    }
+    &.plus em {
+        display: flex;
+        align-items: center;
+        padding-left: calc_vh(3vh);
+        &::after {
+            content: "";
+            display: block;
+            width: calc_vh(6vh);
+            height: calc_vh(6vh);
+
+            background-size: cover;
+        }
+    }
+}
+
+.noti-badge-reward-count {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc_vh(38vh);
+    height: calc_vh(32vh);
+    color: $green050;
+    font-weight: bold;
+    font-size: calc_vh(14vh);
+    text-shadow: 0 0 2px rgba(83, 255, 217, 0.7);
+    em {
+        position: relative;
+        z-index: 1;
+    }
+    &::before,
+    &::after {
+        position: absolute;
+        content: "";
+        width: calc_vh(38vh);
+        height: calc_vh(32vh);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    &::before {
+
+        background-size: calc_vh(148vh) calc_vh(76vh);
+        background-position: calc_vh(-68vh) calc_vh(-38vh);
+        animation: noti-badge-count-effect 2s infinite;
+    }
+    &::after {
+
+        background-size: calc_vh(148vh) calc_vh(76vh);
+        background-position: calc_vh(-68vh) 0;
+    }
+    &.large,
+    &.plus {
+        width: calc_vh(42vh);
+        height: calc_vh(32vh);
+        &::before,
+        &::after {
+            width: calc_vh(42vh);
+            height: calc_vh(32vh);
+        }
+        &::before {
+            background-position: calc_vh(-106vh) calc_vh(-38vh);
+        }
+        &::after {
+            background-position: calc_vh(-106vh) 0;
+        }
+    }
+    &.plus em {
+        display: flex;
+        align-items: center;
+        padding-left: calc_vh(3vh);
+        &::after {
+            content: "";
+            display: block;
+            width: calc_vh(6vh);
+            height: calc_vh(6vh);
+
+            background-size: cover;
+        }
+    }
+}
+
+@keyframes noti-badge-effect {
+    0% {
+        opacity: 1;
+        transform: translate(50%, -50%) scale(1);
+    }
+    75% {
+        opacity: 0;
+        transform: translate(50%, -50%) scale(0.6);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(50%, -50%) scale(0.6);
+    }
+}
+@keyframes noti-badge-count-effect {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    75% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.6);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.6);
+    }
+}
+
+// Fixes disappearing chevron on xbox
+.pubg-css-arrow {
+    position: relative;
+    border: solid $gray400;
+    border-width: 0 calc_vh(2vh) calc_vh(2vh) 0;
+    display: inline-block;
+    padding: calc_vh(2vh);
+    width: calc_vh(12vh);
+    height: calc_vh(12vh);
+    font-size: 0;
+    vertical-align: middle;
+
+    &.disable {
+        pointer-events: none;
+        opacity: 0.6;
+    }
+}
+
+/*
+    Icon Component
+    0. #EEE 아이콘 이미지 교체
+    1. #EEE 마스크 제거
+    2. #EEE에 투명도 있는경우 opacity 따로 적용
+    3. 나머지 색상값은 제거 안함 (기존 마스크 사용, hover, selected, 컬러 아이콘)
+*/
+$icon-array: info, caution, caution_triangle, arrow, sorting, filtering, externallink, lock, search, timelimit, timer,
+    close, check, change-map, internal-link, delay-timer, delete, bp, ep, g-coin, plus, minus, return, platform,
+    checkbox_active, checkbox_inactive, control, play, refresh, arrow-top, arrow-bottom, arrow-right, arrow-left,
+    pubg-plus, special-skin, custom, player;
+// Sprite Icon Setting
+@each $icon in $icon-array {
+    .pubg-icon-#{$icon} {
+
+        background-size: calc_vh(92vh) calc_vh(32vh);
+    }
+}
+
+// Icon Default & Size
+[class*="pubg-icon-"] {
+    position: relative;
+    display: inline-block;
+    width: calc_vh(16vh);
+    height: calc_vh(16vh);
+    font-size: 0;
+    vertical-align: middle;
+    &.disable {
+        pointer-events: none;
+        opacity: 0.6;
+    }
+    &.small {
+        width: calc_vh(16vh);
+        height: calc_vh(16vh);
+        background-position: 0 0;
+    }
+    &.medium {
+        width: calc_vh(20vh);
+        height: calc_vh(20vh);
+        background-position: calc_vh(-16vh) 0;
+    }
+    &.large {
+        width: calc_vh(24vh);
+        height: calc_vh(24vh);
+        background-position: calc_vh(-36vh) 0;
+    }
+    &.xlarge {
+        width: calc_vh(32vh);
+        height: calc_vh(32vh);
+        background-position: calc_vh(-60vh) 0;
+    }
+}
+
+// pubg-plus 아이콘 예외처리
+.pubg-icon-pubg-plus {
+    position: relative;
+    display: inline-block;
+    width: calc_vh(38vh);
+    height: calc_vh(20vh);
+    font-size: 0;
+    vertical-align: middle;
+    &.disable {
+        pointer-events: none;
+        opacity: 0.6;
+    }
+
+    &.plus {
+        background-position-y: calc_vh(-3vh);
+    }
+    &.basic {
+        background-position-y: calc_vh(-38vh);
+    }
+
+    &.xsmall {
+        width: calc_vh(38vh);
+        height: calc_vh(20vh);
+        background-position-x: calc_vh(-2.2vh);
+    }
+    &.small {
+        width: calc_vh(46vh);
+        height: calc_vh(24vh);
+        background-position-x: calc_vh(-40.27vh);
+    }
+    &.medium {
+        width: calc_vh(50vh);
+        height: calc_vh(26vh);
+        background-position-x: calc_vh(-84.8vh);
+    }
+    &.large {
+        width: calc_vh(58vh);
+        height: calc_vh(30vh);
+        background-position-x: calc_vh(-133vh);
+    }
+    &.xlarge {
+        width: calc_vh(70vh);
+        height: calc_vh(36vh);
+        background-position-x: calc_vh(-190vh);
+    }
+}
+
+// size 다른 icon 예외처리
+// 2줄일 경우
+.pubg-icon-externallink,
+.pubg-icon-arrow-top,
+.pubg-icon-arrow-right,
+.pubg-icon-arrow-left,
+.pubg-icon-arrow-bottom {
+    background-size: calc_vh(92vh) calc_vh(64vh);
+}
+// 3줄일 경우
+.pubg-icon-delete {
+    background-size: calc_vh(92vh) calc_vh(96vh);
+}
+.pubg-icon-externallink {
+    background-size: calc_vh(92vh) calc_vh(64vh);
+}
+.pubg-icon-pubg-plus {
+    background-size: calc_vh(262vh) calc_vh(72vh);
+}
+
+// Icon Mask Setting
+
+
+// pubg-icon mask setting 예외처리
+.pubg-icon-pubg-plus {
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: calc_vh(262vh) calc_vh(72vh);
+
+    &.plus {
+        -webkit-mask-position-y: calc_vh(-3vh);
+    }
+    &.basic {
+        -webkit-mask-position-y: calc_vh(-38vh);
+    }
+
+    &.xsmall {
+        width: calc_vh(38vh);
+        height: calc_vh(20vh);
+        -webkit-mask-position-x: calc_vh(-2.2vh);
+    }
+    &.small {
+        width: calc_vh(46vh);
+        height: calc_vh(24vh);
+        -webkit-mask-position-x: calc_vh(-40.27vh);
+    }
+    &.medium {
+        width: calc_vh(50vh);
+        height: calc_vh(26vh);
+        -webkit-mask-position-x: calc_vh(-84.8vh);
+    }
+    &.large {
+        width: calc_vh(58vh);
+        height: calc_vh(30vh);
+        -webkit-mask-position-x: calc_vh(-133vh);
+    }
+    &.xlarge {
+        width: calc_vh(70vh);
+        height: calc_vh(36vh);
+        -webkit-mask-position-x: calc_vh(-190vh);
+    }
+}
+
+// color 마스크 및 hover, selected에 마스크 색상 적용시 사용
+
+/* About Button Component */
+.pubg-btn-group {
+    @extend .clearfix;
+    margin-top: calc_vh(15vh);
+    .btn-round ~ .btn-round {
+        /* .btn-round는 사라질 예정 */
+        margin-left: calc_vh(16vh);
+    }
+    button ~ button {
+        margin-left: calc_vh(16vh);
+    }
+}
+
+.pubg-xbox,
+.pubg-ps4,
+.pubg-stadia,
+:host-context(.pubg-xbox),
+:host-context(.pubg-stadia),
+:host-context(.pubg-ps4) {
+    .pubg-btn-group {
+        button ~ button {
+            margin-left: calc_vh(30vh);
+        }
+    }
+}
+
+// ordo-square-button-wrapper, modal-button로 통일할 예정
+.ordo-square-button-wrapper,
+.pubg-btn-group,
+.button-footer,
+.modal-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    ordo-square-button ~ ordo-square-button {
+        margin-left: calc_vh(16vh);
+    }
+}

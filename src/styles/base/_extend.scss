@@ -1,0 +1,425 @@
+@use '../global/pubg.variable' as *;
+@use './typography' as *;
+
+/* Single ellipsis */
+%ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Hover border box */
+%pointblock {
+    content: "";
+    box-sizing: border-box;
+    pointer-events: none;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #bfbfbf;
+    border: calc_vh(3vh) solid $yellow200;
+    box-shadow: 0 0 calc_vh(3vh) rgba($yellow200, 0.7);
+}
+
+/*
+    border 2 ~ 4까지 있음
+    추가 방법
+    1 : 태그를 추가한다. <div class="out-focus"></div> (html에 넣어줘야한다.)
+    2 : 기존처럼 클래스 추가시 넣어준다. (단점 before, after를 둘다 써야해서 기존에 하나라도 쓰고 있으면 안된다, css에 extend식으로 넣어줘야 한다.)
+ */
+%focus-in-100 {
+    content: "";
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    outline: calc_vh(2vh) solid $yellow200;
+    outline-offset: calc_vh(-2vh);
+    box-shadow: 0 0 3px rgba($yellow200, 0.7);
+    box-sizing: border-box;
+}
+
+%focus-in-200 {
+    @extend %focus-in-100;
+    outline: calc_vh(3vh) solid $yellow200;
+    outline-offset: calc_vh(-3vh);
+}
+%focus-in-300 {
+    @extend %focus-in-100;
+    outline: calc_vh(4vh) solid $yellow200;
+    outline-offset: calc_vh(-4vh);
+}
+%focus-out-100 {
+    content: "";
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    outline: calc_vh(2vh) solid $yellow200;
+    box-shadow: 0 0 calc_vh(3vh) rgba($yellow200, 0.7);
+    box-sizing: border-box;
+}
+%focus-out-200 {
+    @extend %focus-out-100;
+    outline: calc_vh(3vh) solid $yellow200;
+}
+%focus-out-300 {
+    @extend %focus-out-100;
+    outline: calc_vh(4vh) solid $yellow200;
+}
+
+%focus-inout-100 {
+    content: "";
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    border: calc_vh(3vh) solid rgba($yellow200, 0.2);
+    outline: calc_vh(2vh) solid $yellow200;
+    box-shadow: 0 0 calc_vh(3vh) rgba($yellow200, 0.7);
+    box-sizing: border-box;
+}
+%focus-inout-200 {
+    @extend %focus-inout-100;
+    border: calc_vh(4vh) solid rgba($yellow200, 0.2);
+    outline: calc_vh(3vh) solid $yellow200;
+}
+%focus-inout-300 {
+    @extend %focus-inout-100;
+    border: calc_vh(5vh) solid rgba($yellow200, 0.2);
+    outline: calc_vh(4vh) solid $yellow200;
+}
+
+%focus-fill-100 {
+    content: "";
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    outline: calc_vh(2vh) solid $yellow200;
+    outline-offset: 0;
+    background-color: rgba($yellow200, 0.15);
+    box-shadow: 0 0 calc_vh(3vh) rgba($yellow200, 0.7);
+    box-sizing: border-box;
+    z-index: 1;
+    // focus 배경에 글자색이 가려지는거 방지용
+    // P {
+    //     position: relative;
+    //     z-index: 2;
+    // }
+}
+%focus-fill-200 {
+    @extend %focus-fill-100;
+    outline: calc_vh(3vh) solid $yellow200;
+}
+%focus-fill-300 {
+    @extend %focus-fill-100;
+    outline: calc_vh(4vh) solid $yellow200;
+}
+
+/* Select check mark */
+%select-check {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: calc_vh(15vh);
+    width: calc_vh(12vh);
+    height: calc_vh(7vh);
+    transform: translate(0, -75%) rotate(135deg);
+    border-width: calc_vh(3.4vh) calc_vh(3.4vh) 0 0;
+    border-style: solid;
+    border-color: $pubg-white;
+}
+
+%val-selected {
+    .val:after {
+        transform: translate(0, -25%) rotate(-45deg);
+    }
+}
+
+%val-selected-point {
+    .val {
+        color: #1b1b1b;
+        &:after {
+            border-color: #1b1b1b;
+        }
+    }
+}
+
+%new {
+    &::before,
+    &::after {
+        position: absolute;
+        right: calc_vh(-8vh);
+        top: calc_vh(8vh);
+        transform: translate(50%, -50%);
+    }
+
+    &::before {
+        content: "";
+        width: calc_vh(12vh);
+        height: calc_vh(12vh);
+        background-color: rgba(185, 166, 40, 0.6);
+        box-shadow: 0 0 calc_vh(7vh) calc_vh(2vh) rgba(107, 107, 107, 0.4);
+        border-radius: 50%;
+        animation: icon-new 0.5s infinite alternate;
+    }
+
+    &::after {
+        content: "";
+        width: calc_vh(6vh);
+        height: calc_vh(6vh);
+        background-color: #ffda43;
+        border-radius: 50%;
+    }
+
+    @keyframes icon-new {
+        from {
+            transform: translate(50%, -50%) scale(0.6);
+        }
+        to {
+            transform: translate(50%, -50%) scale(1);
+        }
+    }
+}
+
+//ordo Modal token
+
+%ordo-modal-style-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    padding-top: calc_vh(36vh);
+
+
+    background-size: calc_vh(660vh) calc_vh(84vh), 100%;
+    box-shadow: 0 calc_vh(10vh) calc_vh(20vh) $shadow-black;
+    box-sizing: border-box;
+    animation: pubg-modal-fade-in 0.132s ease 0.25s both;
+    z-index: $modal-zindex;
+    @keyframes pubg-modal-fade-in {
+        from {
+            transform: translate(-150%, -50%);
+        }
+        to {
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: calc_vh(3vh);
+
+        z-index: 2;
+    }
+}
+
+%ordo-modal-style-dim {
+    z-index: $dim-zindex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $modal-overlay;
+}
+
+// 와이드모달 전용
+%ordo-modal-style-title-wide {
+    @extend %typography-size-h900; /* type-h2 */
+    text-align: center;
+    font-weight: bold;
+    color: $gray050;
+    text-transform: uppercase;
+}
+
+// 박스모달 전용
+%ordo-modal-style-title-box {
+    @extend %typography-size-h800; /* type-h3 */
+    text-align: center;
+    font-weight: bold;
+    color: $gray050;
+    text-transform: uppercase;
+}
+
+%ordo-modal-style-content {
+    margin: calc_vh(40vh) 0 calc_vh(60vh);
+}
+
+// 박스모달 전용
+%ordo-modal-style-body {
+    @extend %typography-size-b300; /* type-p3 */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: calc_vh(40vh) 0 calc_vh(24vh);
+    padding: calc_vh(21vh) calc_vh(20vh);
+    color: rgba($gray050, 0.8);
+
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 1px;
+        opacity: 0.4;
+    }
+
+    &::after {
+        top: 0;
+    }
+
+    &::before {
+        bottom: 0;
+    }
+}
+
+%ordo-modal-style-button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: calc_vh(28vh) 0;
+
+
+    &::before, &::after {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: calc_vh(1vh);
+    }
+
+    &::before {
+        top: calc_vh(-1vh);
+    }
+
+    &::after {
+        bottom: calc_vh(-1vh);
+    }
+
+    .btn-round ~ .btn-round {
+        /* .btn-round는 사라질 예정 */
+        margin-left: calc_vh(16vh);
+    }
+    button ~ button {
+        margin-left: calc_vh(16vh);
+    }
+}
+
+%ordo-tab {
+    display: flex;
+    ::ng-deep > span {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: calc_vh(148vh);
+        height: calc_vh(44vh);
+        color: $warmgray300;
+        box-sizing: border-box;
+        border-bottom: calc_vh(1vh) solid $warmgray500;
+        position: relative;
+
+        &[class*="noti-badge"]:before,
+        &[class*="noti-badge"]:after {
+            right: calc_vh(13vh);
+            top: calc_vh(13vh);
+        }
+
+        p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 calc_vh(24vh) calc_vh(1vh);
+            width: 100%;
+            height: 100%;
+        }
+        &:first-child {
+            border-bottom: calc_vh(1vh) solid;
+            border-image-source: linear-gradient(90deg, rgba($warmgray500, 0.4) 0%, $warmgray500 100%);
+            border-image-slice: 1;
+        }
+        &.focused {
+            outline: calc_vh(3vh) solid $pubg-yellow;
+            outline-offset: calc_vh(-3vh);
+        }
+        &:hover {
+            color: $pubg-white;
+            p {
+
+            }
+        }
+        &.active {
+            color: $gray050;
+            text-shadow: 0px 0px 2px rgba(213, 230, 207, 0.6);
+            border-bottom: calc_vh(1vh) solid transparent;
+            border-image-source: none;
+            p {
+                padding: 0 calc_vh(24vh) calc_vh(2vh);
+                border-top: calc_vh(1vh) solid $warmgray300;
+                &::before,
+                &::after {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    width: calc_vh(1vh);
+                    height: calc_vh(44vh);
+
+                }
+                &::before {
+                    left: 0;
+                }
+                &::after {
+                    right: 0;
+                }
+            }
+        }
+        &.focused {
+            outline: none;
+        }
+    }
+
+    ::ng-deep .list-navigator-first {
+        min-width: calc_vh(50vh);
+    }
+
+    ::ng-deep .line {
+        display: flex !important;
+        align-items: center;
+        flex: 1;
+        height: calc_vh(44vh);
+        border-bottom: calc_vh(1vh) solid;
+        border-image-source: linear-gradient(to left, rgba($warmgray500, 0.4) 0%, $warmgray500 calc_vh(148vh));
+        border-image-slice: 1;
+    }
+}
