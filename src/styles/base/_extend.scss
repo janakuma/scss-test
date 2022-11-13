@@ -211,8 +211,7 @@
     transform: translate(-50%, -50%);
     width: 100%;
     padding-top: calc_vh(36vh);
-
-
+    background-color: rgba(0,0,0,.3);
     background-size: calc_vh(660vh) calc_vh(84vh), 100%;
     box-shadow: 0 calc_vh(10vh) calc_vh(20vh) $shadow-black;
     box-sizing: border-box;

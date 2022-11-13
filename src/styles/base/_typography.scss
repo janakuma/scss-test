@@ -1,3 +1,5 @@
+@use '../global/pubg.variable' as *;
+
 /* Typography */
 %typography-size-h1000 {
     font-size: calc_vh(72vh);

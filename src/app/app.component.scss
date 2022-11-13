@@ -1,4 +1,5 @@
 @use '../styles/global/pubg.variable' as *;
+@use '../styles/base/extend' as *;
 
 .spacer {
     flex: 1;
@@ -268,5 +269,15 @@ svg#clouds {
     svg#rocket-smoke {
     display: none;
     visibility: hidden;
+    }
+}
+
+.ng-modal {
+    display: none;
+    @extend %ordo-modal-style-bg;
+    .content {
+        width: 800px;
+        height: 1000px;
+        background-color: $blue200
     }
 }
